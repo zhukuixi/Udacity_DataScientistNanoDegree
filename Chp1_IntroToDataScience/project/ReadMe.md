@@ -27,7 +27,7 @@ Mainly, the goal is to have a better understanding these 3 questions:
 I intend to follow the CRISP-DM process to systematically explore the data, gain valuable insights and effectively communicate my findings via a blog post on Medium to the board audience.
 
 ## File Descriptions
-The Jupyter Notebook to showcase my thought process and code related to the questions posed. 
+The Jupyter Notebook showcases my thought process and code solutions related to the questions posed. 
 
 ## Medium Blog Post 
 The main discovery of the analysis can be found at the Medium Blog post available [here]()
