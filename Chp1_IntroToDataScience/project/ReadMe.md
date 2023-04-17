@@ -30,7 +30,7 @@ I intend to follow the CRISP-DM process to systematically explore the data, gain
 The Jupyter Notebook showcases my thought process and code solutions related to the questions posed. 
 
 ## Medium Blog Post 
-The main discovery of the analysis can be found at the Medium Blog post available [here]()
+The main discovery of the analysis can be found at the Medium Blog post available [here](https://medium.com/@quishzhu/unveiling-the-hidden-insights-a-comprehensive-data-analysis-of-the-seattle-airbnb-dataset-410ff8c19f8b)
 
 ## Licensing, Authors, Acknowledgements, etc.
 Acknowledgement should go to [Kaggle](https://www.kaggle.com/datasets/airbnb/seattle) for providing the dataset.
