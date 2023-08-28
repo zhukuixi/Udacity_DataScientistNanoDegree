@@ -40,8 +40,6 @@ img
 README.md    
 
 ### Components
-process_data.py
-train_classifier.py
 
 #### 1. ETL Pipeline
 A Python script, `process_data.py`, writes a data cleaning pipeline that:
