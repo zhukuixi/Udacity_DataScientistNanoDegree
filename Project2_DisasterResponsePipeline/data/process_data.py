@@ -4,6 +4,17 @@ from sqlalchemy import create_engine
 
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+    load_data
+    Load data from csv files and merge to a single pandas dataframe
+
+    Input:
+    messages_filepath   filepath to messages csv file
+    categories_filepath filespath to categories csv file
+
+    Returns:
+    df  dataframe merging categories and messages
+    '''
     # Load datasets
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
@@ -17,13 +28,28 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    '''
+    clean_data
+    Take multiple preprocess steps to clean and preprocess the dataframe:
+        1. Split the "categories" column into multiple columns , one for each category class
+        2. Rename the class labels
+        3. Convert category values to just numbers 0 or 1
+        4. Drop duplicate rows
+
+    Input:
+    df  dataframe
+
+    Returns:
+    df cleaned dataframe 
+    '''
     # Split categories into separate category columns.
     categories = df.categories.str.split(';',expand=True)
    
     # rename the column names of categories
     row = categories.iloc[0,:]
     category_colnames = row.str.split("-").str[0]
-    
+    categories.columns = category_colnames
+
     # Convert category values to just numbers 0 or 1.
     for column in categories:
         # set each value to be the last character of the string
@@ -32,19 +58,31 @@ def clean_data(df):
         # convert column from string to numeric
         categories[column] = pd.to_numeric(categories[column])
     
+    
     # drop the original categories column from `df`
     df.drop('categories',axis=1,inplace=True)
    
     # concatenate the original dataframe with the new `categories` dataframe
-    df = pd.concat([df,categories],axis=1)
-    
+    df = pd.concat([df,categories],axis=1)    
+
     # drop duplicates
     df.drop_duplicates(inplace=True)
+
+    # get rid of samples containing "2" in class label
+    df = df.loc[~(df.loc[:,category_colnames]==2).any(axis=1),:]
     
     return df
 
 
 def save_data(df, database_filename):
+    '''
+    save_data
+    Store pandas dataframe in a SQLite database
+
+    Input:
+    df  dataframe
+    database_file   database file address
+    '''
     engine = create_engine('sqlite:///{}'.format(database_filename))
     df.to_sql('disaster_messages', engine, index=False, if_exists='replace')
   
