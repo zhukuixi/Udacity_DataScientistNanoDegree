@@ -64,8 +64,8 @@ A jupyter notebook `ML Pipeline Preparation` was used to explore possible machin
 #### 3. Flask Web App
 The project includes a web app where users can input a new message and get classification results in several categories. The web app will also display the distribution of message genres and categories in training set. The outputs are shown below:
 
-![](https://github.com/zhukuixi/Udacity_DataScientistNanoDegree/blob/main/Project_DisasterResponsePipeline/img/screenshot1.jpg)  
-![](https://github.com/zhukuixi/Udacity_DataScientistNanoDegree/blob/main/Project_DisasterResponsePipeline/img/screenshot2.jpg)
+![](https://github.com/zhukuixi/Udacity_DataScientistNanoDegree/blob/main/Project2_DisasterResponsePipeline/img/screenshot1.jpg)  
+![](https://github.com/zhukuixi/Udacity_DataScientistNanoDegree/blob/main/Project2_DisasterResponsePipeline/img/screenshot2.jpg)
 
 
 
