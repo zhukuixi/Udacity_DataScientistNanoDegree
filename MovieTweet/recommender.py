@@ -10,10 +10,10 @@ import sys # can use sys to take command line arguments
 
 
 class Recommender():
-    '''
+    """
     This class reads movie and reviews data provided by user and will predict the rating for
     a user-movie pair and do recommend a list of movies to users.
-    '''
+    """
 
     def __init__(self):
         self.recommender_knowledge = recKnowledge()
@@ -25,7 +25,7 @@ class Recommender():
         to pull from when you need to make predictions
         """
         self.recommender_knowledge.fit(movies,reviews)
-        self.recommender_CF.fit(movies,reviews,'SVD')
+        self.recommender_CF.fit(movies,reviews)
 
     def predict_rating(self, user_id,movie_id):
         """

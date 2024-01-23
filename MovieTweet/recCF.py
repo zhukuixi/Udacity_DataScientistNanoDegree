@@ -1,7 +1,12 @@
 import pandas as pd
 import numpy as np
 
-class recCF:
+class recCF():
+    """
+    This Recommender uses FunkSVD to make predictions of exact ratings.
+    And uses either Collaborative Filtering or a Knowledge Based recommendation (highest ranked) to make recommendations for users.
+    """
+
     def __init__(self):
         self.movies = None
         self.reviews = None
@@ -9,32 +14,49 @@ class recCF:
         self.movies_seen = {}
         self.movies_to_analyze = {}
         self.user_distance = None
-
         # Matrix for SVD
         self.user_mat = None
         self.movie_mat = None
 
+    def fit(self,movies,reviews,latent_features=12,learning_rate=0.0001,iters=100):
+        """
+        INPUT:
+        movies - (Pandas dataframe)
+        reviews - (Pandas dataframe)
+        latent_features - (int) number of hidden feature of SVD
+        learning_rate - (float) learning rate of gradient descent of SVD algorithm
+        iters - (int) iteration of gradient descent of SVD algorithm
 
-    def fit(self,movies,reviews,style='neighbor'):
-        if self.movies==None:
-            self.movies = movies
-            self.reviews = reviews[['user_id', 'movie_id', 'rating']]
-            self.reviews['user_id'].astype('int')
-            self.user_by_movie = self.reviews.pivot_table(index='user_id', columns='movie_id', values='rating')
-            # initialize movies_seen
-            self.create_userMovie_dict()
-            # initialize movies_to_analyze by filtering movies_seen
-            self.create_movies_to_analyze()
-            # compute user distance
-            self.getUserDistance()
+        OUTPUT: None
+        """
 
-        if style=='SVD':
-            # Matrix for SVD
-            self.user_mat = None
-            self.movie_mat = None
-            self.FunkSVD(latent_features=12, learning_rate=0.0001, iters=100)
+        self.movies = movies
+        self.reviews = reviews[['user_id', 'movie_id', 'rating']]
+        self.reviews['user_id'].astype('int')
+        self.user_by_movie = self.reviews.pivot_table(index='user_id', columns='movie_id', values='rating')
+        # initialize movies_seen
+        self.create_userMovie_dict()
+        # initialize movies_to_analyze by filtering movies_seen
+        self.create_movies_to_analyze()
+        # compute user distance
+        self.getUserDistance()
+
+        # Matrix for SVD
+        self.user_mat = None
+        self.movie_mat = None
+        self.FunkSVD(latent_features, learning_rate, iters)
 
     def predict(self,user_id,movie_id=None,num_recs=5):
+        """
+        INPUT:
+        user_id - (int) user's id
+        movie_id - (str) movie's id
+        num_recs - (int) number of recommended movies
+
+        OUTPUT:
+        recommendations - (list) a list of movie recommendation
+        """
+
         # Predict the rating of given user_id and movie_id
         if movie_id != None:
             user_index = np.where(self.user_by_movie.index==user_id)[0]
@@ -54,7 +76,6 @@ class recCF:
                             ans.add(m)
                     if len(ans) > num_recs:
                         break
-
                 recommendations = list(ans)[:num_recs]
             except:
                 print('Cannot make recommendation. \
