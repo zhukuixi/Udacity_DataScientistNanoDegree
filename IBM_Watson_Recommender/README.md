@@ -36,7 +36,9 @@ img
 
 
 #### Gradio Web App
-The project includes a web app where users can get recommendation articles.
+The project includes a web app where users can get recommendation articles. 
+
+https://huggingface.co/spaces/jooo/IBM_Watson_Recommendation
 
 ![](https://github.com/zhukuixi/Udacity_DataScientistNanoDegree/blob/main/IBM_Watson_Recommender/img/demo.png?raw=true)  
 
