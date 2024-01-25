@@ -191,6 +191,7 @@ class recCF():
         INPUT:
         user_id - the user_id of an individual as int
         min_rating - the minimum rating considered while still a movie is still a "like" and not a "dislike"
+
         OUTPUT:
         movies_liked - an array of movies the user has watched and liked
         """
