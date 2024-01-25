@@ -35,7 +35,7 @@ img
     
 
 
-#### Gradio Web App
+### Gradio Web App
 The project includes a web app where users can get recommendation articles. 
 
 [Link to Web App](https://huggingface.co/spaces/jooo/IBM_Watson_Recommendation)  
