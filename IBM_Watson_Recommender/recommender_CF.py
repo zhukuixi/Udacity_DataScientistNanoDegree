@@ -173,8 +173,8 @@ class RecommenderCF:
         recs = []
         for neighbor in similar_users:
             neighbor_seen_id, neighbor_seen_title = self.get_user_articles(neighbor)
-            neighbor_seen_id.sort(key=lambda x: mapping_article_interaction[x], reverse=True)
-            recommended_id = set(neighbor_seen_id) - set(user_seen_id)
+            recommended_id = list(set(neighbor_seen_id) - set(user_seen_id))
+            recommended_id.sort(key=lambda x: mapping_article_interaction[x], reverse=True)
             recs.extend(recommended_id)
             if len(recs) >= m:
                 break
