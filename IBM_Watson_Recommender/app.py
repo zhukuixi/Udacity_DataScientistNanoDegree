@@ -31,7 +31,7 @@ demo = gr.Interface(
 
 with gr.Blocks() as demo:
     gr.Markdown("<div style='text-align: center; margin-top: 10px; margin-bottom: 10px;'><img src='https://miro.medium.com/v2/resize:fit:1400/1*_DLnG2N1ay1knnwSG7vePA.jpeg' alt='IBM Logo'/></div>")
-    gr.Markdown("<h1 style-'text-align:center;'>IBM Watson Community Article Recommendation System</h1>")
+    gr.Markdown("<h1 style='text-align:center;'>IBM Watson Community Article Recommendation System</h1>")
     user_input = gr.Textbox(label='User Input', lines=1,elem_id='user_input')
     top_n = gr.Slider(minimum=1,maximum=10,step=1,label='Show Top N recommendation', elem_id='top_n')
     style = gr.Dropdown(
